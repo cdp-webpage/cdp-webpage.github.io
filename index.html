@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Contrastive Diffusion Policy: Learning Action Diffusion through Corrections</title>
+        <title>Set-Supervised Diffusion Policy: Learning Action-Chunking Diffusion through Corrections</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=1000">
         <link rel="stylesheet" href="https://use.typekit.net/quv7bsd.css"> <!-- fonts -->
@@ -19,21 +19,32 @@
                         <p><br>under review</p><br>
                         <p><a href="https://github.com/todo">Code Coming soon(GitHub)</a> &nbsp &nbsp <a href="https://arxiv.org/todo">Paper (arXiv)</a><p>
                     </div> -->
-                    <div id="profile-name" style="text-align: center; white-space: nowrap; font-size: 200%;">
-                        <b style="line-height: 1.5;">Contrastive Diffusion Policy: <br> Learning Action Diffusion through Corrections</b>
-                        <p><br>Under Review</p>
-                        <br>
-                        <p>
+                    <div id="profile-name" class="paper-header">
+                        <div class="paper-title">
+                            <b>Set-Supervised Diffusion Policy: <br> Learning Action-Chunking Diffusion through Corrections</b>
+                        </div>
+                        <div class="paper-authors">
+                            Zhaoting Li<sup>1</sup>, Gang Chen<sup>1</sup>, Javier Alonso-Mora<sup>1</sup>,
+                            Cosimo Della Santina<sup>1</sup>, Jens Kober<sup>2</sup>
+                        </div>
+                        <div class="paper-affiliations">
+                            <sup>1</sup>Delft University of Technology,
+                            <sup>2</sup>University of Stuttgart
+                        </div>
+                        <div class="paper-venue">
+                            Robotics: Science and Systems (RSS 2026)
+                        </div>
+                        <p class="project-links">
                             <a href="https://github.com/cdp-project">Code Coming Soon (GitHub)</a> &nbsp;&nbsp;
                             <!-- <a href="https://arxiv.org/todo">Paper (arXiv)</a> -->
                         </p>
                     </div>
                     <div class="image" style="text-align: center; margin: 1em 0;">
-                        <img src="images/cover_figure_CDP-crop.svg" alt="Cover Figure"  style="width: 100%; height: auto; display: block;" />
+                        <img src="images/cover_figure_CDP-crop.png" alt="Cover Figure"  style="width: 100%; height: auto; display: block;" />
                     </div>
 
                     <p style="clear: both;">
-                        <b>Abstract</b>.  Diffusion policies have recently emerged as a powerful framework for robotic manipulation. However, like other behavior cloning approaches, diffusion policies remain vulnerable to covariate shift, often requiring human-in-the-loop interventions to correct failures during deployment.  These interactions naturally provide paired supervision in the form of the robot’s erroneous actions and the human’s corrective responses. Yet existing data aggregation pipelines and standard behavior cloning losses largely ignore this negative signal, leading to overfitting to positive actions and an increasing reliance on expert data that is costly to collect. To address this limitation, we propose Contrastive Diffusion Policy (CDP), a novel algorithm that utilizes contrastive action-chunk data to guide the policy improvement. CDP creates a desired action set from a positive action chunk and a negative action chunk, and designs a training pipeline to encourage the diffusion polices to align with the set. Through extensive experiments across multiple robotic manipulation tasks, we demonstrate that CDP improves robustness under covariate shift and induces higher-quality datasets, leading to more efficient and reliable policy learning from human-in-the-loop corrections.
+                        <b>Abstract</b>.  Diffusion policies have recently emerged as a powerful framework for robotic manipulation. However, like other behavior cloning methods, they remain vulnerable to distributional shift, often requiring human-in-the-loop interventions to correct failures during deployment. These interactions naturally provide paired supervision in the form of the robot’s undesired actions and the human teacher’s corrective actions. Yet existing data aggregation pipelines and standard behavior cloning losses largely ignore this negative signal from undesired actions, leading to overfitting to teacher's actions and an increasing reliance on costly expert data. To address this limitation, we propose Set-Supervised Diffusion Policy (SDP), a novel learning framework that utilizes contrastive action-chunk data to train diffusion policies from human corrections. From paired positive and negative action-chunks, SDP constructs a set of desired action-chunks and designs a training pipeline that encourages the diffusion policy to align with the set. Through extensive experiments across multiple robotic manipulation tasks, we demonstrate that SDP consistently improves policy performance, with particularly strong gains in robustness to noisy data. Moreover, SDP induces high-quality aggregated datasets, enabling more efficient and reliable policy learning from human-in-the-loop corrections.
                     </p>
                 </div>
                 <div style="clear: both;"></div>
@@ -66,15 +77,15 @@
                     </div>
                     <div class="highlight-proj">
                         <video height="240" width="100%" playsinline="" muted="" autoplay="" loop="">
-                            <source src="videos/InsertT_image2_11_output_ppt.mp4" type="video/mp4">
+                            <source src="videos/roundtable_demo1_1024x1024.mp4" type="video/mp4">
                         </video>
-                        <p style="font-size: 16px; margin-left: 0px">Water pouring: Learning full pose <br>control to precisely pour <br>liquid (marbles) into a bowl.</p>
+                        <p style="font-size: 16px; margin-left: 0px">Roundtable Assembly <br> SDP (ours) success <br>thanks to effective usage of corrections.</p>
                     </div>
                     <div class="highlight-proj">
                         <video height="240" width="100%" playsinline="" muted="" autoplay="" loop="">
-                            <source src="videos/roundtable_demo1_1024x1024.mp4" type="video/mp4">
+                            <source src="videos/roundtable_demo2_1024x1024_DP_Failure.mp4" type="video/mp4">
                         </video>
-                        <p style="font-size: 16px; margin-left: 0px">Insert-T: Learning long-horizon multi-<br> modal task that inserts the T-shape <br>object into the U-shape object.</p>
+                        <p style="font-size: 16px; margin-left: 0px">Roundtable Assembly <br> DP Common failure mode <br>distributional drift during rollout.</p>
                     </div>
                 </div>
             </div>
@@ -91,93 +102,7 @@
             </div>
             <div class="divider"></div> -->
 
-            <!-- simulation results -->
-            <div class="section paper">
-                <h1>Simulation benchmarks</h1>
-                <p>Our CLIC method outperforms prior state-of-the-art on 4 tasks, where we consider various feedback types for each task. Examples of the trajectory rollout of CLIC method (after training) using accurate demonstration are shown in the video below:</p><br>
-
-                
-                <video height="auto" width="100%" playsinline="" muted="" autoplay="" loop="">
-                    <source src="images_clic/CLIC_simulation_compressed.mp4" type="video/mp4">
-                </video>
-                <!-- <p style="font-size: 16px; text-align:center">Implicit BC policy on a precise, 1-millimeter-tolerance <br>slide-then-insert task: push a block across a table, then slide it into a slot.</p><br> -->
-
-                <!-- <p>Below is a representative comparison on this insertion task:</p><br> -->
-            </div>
-            
-            <!-- Highlight part -->
-            <div class="section paper">
-                <h1 style="margin-bottom: 0px">Real World Insert-T Task</h1>
-                <p>The Insert-T task requires the robot to insert a T-shaped object into a U-shaped object by pushing. We categorize the task into three difficulty levels, and examples of the post-training policy rollouts for each level are shown below:</p><br>
-                <h2 style="margin-bottom: 0px">Insert-T 'Easy' category:</h2> 
-                <!-- <p style="font-size: 20px; margin-left: 0px"><b> Insert-T 'Easy' category: <b></p> -->
-                <div class="section recent-work">
-                    <div class="highlight-proj">
-                        <video height="240" width="100%" playsinline="" muted="" autoplay="" loop="", style="margin-top: 0px;">
-                            <source src="images_clic/InsertT_easy_1.mp4" type="video/mp4">
-                        </video>
-                        <!-- <p style="font-size: 16px; margin-left: 0px">Precise cloning of <br> switching behaviors. <br> (shown: "2D Particle" task)</p> -->
-                    </div>
-                    <div class="highlight-proj">
-                        <video height="240" width="100%" playsinline="" muted="" autoplay="" loop="", style="margin-top: 0px;">
-                            <source src="images_clic/InsertT_easy_2.mp4" type="video/mp4">
-                        </video>
-                        <!-- <p style="font-size: 16px; margin-left: 0px">State-of-the art results on D4RL human-expert tasks. <br> (shown: "door-human-v0" task)</p> -->
-                    </div>
-                    <div class="highlight-proj">
-                        <video height="240" width="100%" playsinline="" muted="" autoplay="" loop="", style="margin-top: 0px;">
-                            <source src="images_clic/InsertT_easy_3.mp4" type="video/mp4">
-                        </video>
-                        <!-- <p style="font-size: 16px; margin-left: 0px">Works with high-dimensional observations and inputs. <br> (shown: "Bi-Manual Sweeping")</p> -->
-                    </div>
-                </div>
-                <h2 style="margin-bottom: 0px">Insert-T 'Medium' category:</h2> 
-                <!-- <p style="font-size: 20px; margin-left: 0px"><b> Insert-T 'Medium' category: <b></p> -->
-                <div class="section recent-work">
-                    <div class="highlight-proj">
-                        <video height="240" width="100%" playsinline="" muted="" autoplay="" loop="", style="margin-top: 0px;">
-                            <source src="images_clic/InsertT_medium_1.mp4" type="video/mp4">
-                        </video>
-                        <!-- <p style="font-size: 16px; margin-left: 0px">Precise cloning of <br> switching behaviors. <br> (shown: "2D Particle" task)</p> -->
-                    </div>
-                    <div class="highlight-proj">
-                        <video height="240" width="100%" playsinline="" muted="" autoplay="" loop="", style="margin-top: 0px;">
-                            <source src="images_clic/InsertT_medium_2.mp4" type="video/mp4">
-                        </video>
-                        <!-- <p style="font-size: 16px; margin-left: 0px">State-of-the art results on D4RL human-expert tasks. <br> (shown: "door-human-v0" task)</p> -->
-                    </div>
-                    <div class="highlight-proj">
-                        <video height="240" width="100%" playsinline="" muted="" autoplay="" loop="", style="margin-top: 0px;">
-                            <source src="images_clic/InsertT_medium_3.mp4" type="video/mp4">
-                        </video>
-                        <!-- <p style="font-size: 16px; margin-left: 0px">Works with high-dimensional observations and inputs. <br> (shown: "Bi-Manual Sweeping")</p> -->
-                    </div>
-                </div>
-                <h2 style="margin-bottom: 0px">Insert-T 'Hard' category:</h2> 
-                <!-- <p style="font-size: 20px; margin-left: 0px"><b> Insert-T 'Medium' category: <b></p> -->
-                <div class="section recent-work">
-                    <div class="highlight-proj">
-                        <video height="240" width="100%" playsinline="" muted="" autoplay="" loop="", style="margin-top: 0px;">
-                            <source src="images_clic/InsertT_hard_1.mp4" type="video/mp4">
-                        </video>
-                        <!-- <p style="font-size: 16px; margin-left: 0px">Precise cloning of <br> switching behaviors. <br> (shown: "2D Particle" task)</p> -->
-                    </div>
-                    <div class="highlight-proj">
-                        <video height="240" width="100%" playsinline="" muted="" autoplay="" loop="", style="margin-top: 0px;">
-                            <source src="images_clic/InsertT_hard_2.mp4" type="video/mp4">
-                        </video>
-                        <!-- <p style="font-size: 16px; margin-left: 0px">State-of-the art results on D4RL human-expert tasks. <br> (shown: "door-human-v0" task)</p> -->
-                    </div>
-                    <div class="highlight-proj">
-                        <video height="240" width="100%" playsinline="" muted="" autoplay="" loop="", style="margin-top: 0px;">
-                            <source src="images_clic/InsertT_hard_3.mp4" type="video/mp4">
-                        </video>
-                        <!-- <p style="font-size: 16px; margin-left: 0px">Works with high-dimensional observations and inputs. <br> (shown: "Bi-Manual Sweeping")</p> -->
-                    </div>
-                </div>
-            </div>
-                <div class="divider"></div>
-                <br>
+        
 
             
 
@@ -330,48 +255,13 @@
              -->
 
 
-            <div class="section team">
-                <h1>Team</h1>
-                <p>Omited for anonymous review.</p><br>
-                <!-- <div class="people-profile">
-                    <a href="http://www.peteflorence.com/"><img src="images/people/pete.jpg"><p>Pete Florence</p></a>
-                </div>
-                <div class="people-profile">
-                    <a href="https://coreylynch.github.io/"><img src="images/people/corey.jpg"><p>Corey Lynch</p></a>
-                </div>
-                <div class="people-profile">
-                    <a href="https://andyzeng.github.io/"><img src="images/people/andy.jpg"><p>Andy Zeng</p></a>
-                </div>
-                <div class="people-profile">
-                    <a href="https://www.linkedin.com/in/oscar-ramirez-905913b9"><img src="images/people/oscar.jpg"><p>Oscar Ramirez</p></a>
-                </div>
-                <div class="people-profile">
-                    <a href="https://ayzaan.com/"><img src="images/people/ayzaan.jpg"><p>Ayzaan Wahid</p></a>
-                </div>
-                <div class="people-profile">
-                    <a href="https://www.linkedin.com/in/laura-downs-4935081"><img src="images/people/laura.jpg"><p>Laura Downs</p></a>
-                </div>
-                <div class="people-profile">
-                    <a href="https://almostsquare.com/"><img src="images/people/adrian.png"><p>Adrian Wong</p></a>
-                </div>
-                <div class="people-profile">
-                    <a href="http://johnnylee.net/"><img src="images/people/johnny.png"><p>Johnny Lee</p></a>
-                </div>
-                <div class="people-profile">
-                    <a href="https://twitter.com/imordatch"><img src="images/people/igor.jpg"><p>Igor Mordatch</p></a>
-                </div>
-                <div class="people-profile">
-                    <a href="https://jonathantompson.github.io/"><img src="images/people/jonathan_tompson.jpeg"><p>Jonathan Tompson</p></a>
-                </div>
-                 -->
-                <div style="clear: both;"></div>
-            </div>
+        
             <!-- <div class="section teamlogo">
                 <img src="images/logo.png">
                 <p>Robotics at Google</p>
             </div> -->
-            <div style="clear: both;"></div>
-            <div class="divider"></div>
+            <!-- <div style="clear: both;"></div> -->
+            <!-- <div class="divider"></div> -->
             
 <!--             <div class="section highlights">
                 <h1>Highlights</h1>
@@ -383,14 +273,15 @@
             
             
             
-            <div class="divider"></div>
+            <!-- <div class="divider"></div> -->
             
-            <div class="section acknowledgements">
+            <!-- <div class="section acknowledgements"> -->
                 <h1>Acknowledgements</h1>
-                <p>Omited for anonymous review.</p><br><br>
-            </div>
-            <br><br><br><br><br><br><br><br><br><br>
-            <div class="divider"></div>
+                <p>This project is made possible by a contribution from the National Growth Fund program NXTGEN Hightech.
+We also acknowledge the Delft AI Cluster (DAIC) for providing computational resources. We'd like to thank Rodrigo P&eacute;rez-Dattari for helpful discussions, and Qifan Luo and Zi Huang for their valuable feedback on the code repository.</p><br><br>
+            <!-- </div> -->
+            <!-- <br><br><br><br><br><br><br><br><br><br> -->
+            <!-- <div class="divider"></div> -->
         </div>
     </body>
 </html>

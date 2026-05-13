@@ -120,6 +120,52 @@ h2 {
     float: left;
 }
 
+.paper-header {
+    font-size: 100%;
+    line-height: 1.35;
+    white-space: normal;
+}
+
+.paper-title {
+    color: #191e3f;
+    font-size: 32px;
+    line-height: 1.45;
+    margin-bottom: 18px;
+}
+
+.paper-authors {
+    color: #191e3f;
+    font-size: 21px;
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+.paper-affiliations,
+.paper-emails {
+    color: #69737d;
+    font-size: 16px;
+    line-height: 1.45;
+}
+
+.paper-venue {
+    color: #191e3f;
+    font-size: 19px;
+    font-weight: bold;
+    line-height: 1.4;
+    margin: 18px 0 12px;
+}
+
+.paper-header sup {
+    font-size: 65%;
+    line-height: 0;
+    position: relative;
+    top: -0.45em;
+}
+
+.project-links {
+    margin-top: 8px;
+}
+
 #profile img {
     height: 180px;
     margin-top: 5px;
